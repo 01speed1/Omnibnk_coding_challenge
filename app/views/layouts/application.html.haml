@@ -1,0 +1,23 @@
+!!!
+%html
+  %head
+    %meta{  content: "text/html; charset=UTF-8",
+            "http-equiv": "Content-Type"}
+    %meta{  name:"viewport",
+            content:"width=device-width, initial-scale=1.0"}
+    %title OmniBNK Coding Challenge
+    = csrf_meta_tags
+    = csp_meta_tag
+    %link{  href: "https://fonts.googleapis.com/css?family=Work+Sans:100,200,400,600",
+            rel:"stylesheet",
+            type: "text/css" }
+    %link{  href: "https://fonts.googleapis.com/icon?family=Material+Icons",
+            rel: "stylesheet"}
+    = stylesheet_link_tag     'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag  'application', 'data-turbolinks-track': 'reload'
+  %body
+    = yield
+    %script{  src:"//instant.page/1.1.0",
+              type:"module",
+              integrity:"sha384-EwBObn5QAxP8f09iemwAJljc+sU+eUXeL9vSBw1eNmVarwhKk2F9vBEpaN9rsrtp" }/
+    

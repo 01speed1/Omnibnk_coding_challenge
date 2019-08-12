@@ -1,24 +1,17 @@
-# README
+# OmniBNK Coding Challenge
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Requerimientos
+* Docker [instalar docker](https://www.digitalocean.com/community/tutorials/como-instalar-y-usar-docker-en-ubuntu-18-04-1-es)
 
-Things you may want to cover:
+## Antes de iniciar la app
 
-* Ruby version
+### Buildiar los contenedores
+`sudo docker-compose build`
 
-* System dependencies
+### Crear la base de datos e instalar migraciones
+`sudo docker-compose run web rails db:create  db:migrate`
 
-* Configuration
+## Inicar app
+1. `sudo docker-compose up`
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+2. Ir a navegador y visistar `localhost:3000/`
