@@ -1,0 +1,73 @@
+= render "shared/navbar"
+%section.hero.is-light
+  .hero-body
+    .container
+      %h1.title= "Agrega una nueva pelicula"
+      %h2.subtitle= "En Classic Cinema"
+
+.container
+  = form_for(@movie, url: user_movies_path, html: {method: "post"}) do |field|
+
+    =  @movie.errors.details
+
+    /title
+    .field
+      %label.label= "Tiutulo de la pelicula"
+      .control.has-icons-left.has-icons-right
+        %input.input{type: "text", name: "movie[title]", placeholder: "Rapido y Furioso: Maxima Velocidad"}
+        %span.icon.s-small.is-left
+          %i.fas.fa-ticket-alt
+        = render "devise/shared/error_messages", resource: @movie, field: :title
+    .field-body
+      /genre
+      .field
+        %label.label= "Genero de la pelicula"
+        .control.has-icons-left.has-icons-right
+          %input.input{type: "text", name: "movie[genre]", placeholder: "Accion"}
+          %span.icon.s-small.is-left
+            %i.fas.fa-stream
+          = render "devise/shared/error_messages", resource: @movie, field: :genre
+      /release_year
+      .field
+        %label.label= "Año de lanzamiento"
+        .control.has-icons-left.has-icons-right
+          %input.input{type: "number", name: "movie[release_year]", placeholder: "2019"}
+          %span.icon.s-small.is-left
+            %i.fas.fa-calendar-day
+          = render "devise/shared/error_messages", resource: @movie, field: :release_year
+    .field
+      %label.label= "Poster"
+      .file.is-warning.is-boxed.is-centered.has-name
+        %label.file-label
+          %input.file-input{:name => "movies[poster]", :type => "file"}
+          %span.file-cta
+            %span.file-icon
+              %i.fas.fa-cloud-upload-alt
+            %span.file-label
+              Configurame
+          %span.file-name
+            Screen Shot 2017-07-29 at 15.54.25.png
+
+    /synopsis
+    .field
+      %label.label= "Sinopsis"
+      .control
+        %textarea.textarea{ name: "movie[synopsis]", placeholder: "Habia una vez..." }
+        %span.icon.s-small.is-left
+        = render "devise/shared/error_messages", resource: @movie, field: :synopsis
+    /score
+    .field
+      %label.label= "Calificacion de la pelicual"
+      .control
+        - (1..5).each do |value|
+          %label.radio
+            %input{type: "radio", name: "movies[score]", value: value }
+            = value
+    .field.is-grouped
+      .control
+        %button.button.is-warning{ type: "submit" }= "Agregar mi pelicula"
+      .control
+        = link_to("Regresar", user_movies_path, class: "button is-light" )
+    %br/
+    %br/
+

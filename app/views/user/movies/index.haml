@@ -1,0 +1,6 @@
+= render "shared/navbar"
+
+= link_to("Agregar Pelicula", new_user_movie_path, class: "button is-warning" )
+
+= @movies.each do |m|
+  %p m
