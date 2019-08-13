@@ -17,8 +17,9 @@ class Request
 
     def get_json(root_path, query = {})
       query_string = query.to_hash.map {|k,v| "#{k}=#{v}" }.join("&")
-      path = query.empty?? root_path : "#{root_path}?#{query_string}"
+      path = query.empty? ? root_path : "#{root_path}?#{query_string}"
       response = api.get(path)
+      byebug
       [JSON.parse(response.body), response.status]
     end
 

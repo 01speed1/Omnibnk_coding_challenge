@@ -2,14 +2,14 @@
 #require 'json'
 
 class Connection
-  BASE = 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com'
 
   def self.api
-    Faraday.new(url: BASE) do |faraday|
+    Faraday.new(url: ENV["API_URL"]) do |faraday|
       faraday.response :logger
       faraday.adapter Faraday.default_adapter
       faraday.headers['Content-Type'] = 'application/json'
-      faraday.headers['X-Mashape-Key'] = ENV['MASHAPE_KEY']
+      faraday.headers['X-RapidAPI-Host'] = ENV["API_RAPID_HOST"]
+      faraday.headers['X-RapidAPI-Key'] = ENV["API_KEY"]
     end
   end
 end
