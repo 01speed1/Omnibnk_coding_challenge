@@ -1,5 +1,6 @@
 module Spoonacular
   class Recipe < Base
+
     attr_accessor :aggregate_likes,
                   :dairy_free,
                   :gluten_free,
