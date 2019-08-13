@@ -1,0 +1,44 @@
+%nav.navbar.is-dark{"aria-label" => "main navigation", :role => "navigation"}
+  .navbar-brand
+    %a.navbar-item{:href => "https://bulma.io"}
+      %img{ :height => "999", 
+            :src => "https://storage.googleapis.com/coms-bucket/uploads/Brand/599a95c1d0a9d51db5daafaf/Web/1510572759316.png", 
+            :width => "130"}/
+    %a.navbar-burger.burger{"aria-expanded" => "false", "aria-label" => "menu", "data-target" => "navbarBasicExample", :role => "button"}
+      %span{"aria-hidden" => "true"}
+      %span{"aria-hidden" => "true"}
+      %span{"aria-hidden" => "true"}
+  #navbarBasicExample.navbar-menu
+    .navbar-start
+      %a.navbar-item
+        Inicio
+      .navbar-item.has-dropdown.is-hoverable
+        %a.navbar-link
+          Categorias
+        .navbar-dropdown
+          %a.navbar-item
+            About
+          %a.navbar-item
+            Jobs
+          %a.navbar-item
+            Contact
+          %hr.navbar-divider/
+          %a.navbar-item
+            Report an issue
+    .navbar-end
+      .navbar-item
+        .buttons
+          - if not user_signed_in?
+            %a.button.is-warning{ href: "/users/sign_up"}
+              %strong Registrarse
+            %a.button.is-light{ href: "/users/sign_in" }
+              Iniciar Sesion
+          - if user_signed_in?
+            = link_to("Cerrar Sesion", destroy_user_session_path, method: :delete, class: "button is-warning" )
+
+- if alert.present?
+  .notification.is-danger.alert= alert
+
+- if notice.present?
+  .notification.is.info.notice= notice
+

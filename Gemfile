@@ -33,11 +33,12 @@ gem 'jbuilder', '~> 2.5'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-# authentication
+# myGems
 gem 'devise'
-
-# templating engine
 gem 'haml'
+gem 'dotenv-rails'
+gem 'faraday'
+
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false

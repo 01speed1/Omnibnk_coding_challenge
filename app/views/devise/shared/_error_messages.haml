@@ -1,0 +1,3 @@
+- if resource.errors.messages.present?
+  - resource.errors.messages[field].each do |message|
+    %p.help.is-danger= message

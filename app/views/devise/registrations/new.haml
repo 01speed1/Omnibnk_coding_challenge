@@ -1,0 +1,44 @@
+= render "shared/navbar"
+%section.hero.is-light
+  .hero-body
+    .container
+      %h1.title= "Crea una cuenta"
+      %h2.subtitle= "En Classic Cinema"
+
+.container
+  = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |field|
+    .field
+      %label.label= "Correo Electronico"
+      .control.has-icons-left.has-icons-right
+        %input.input{type: "text", name: "#{resource_name}[email]", placeholder: "email@correo.com"}
+        %span.icon.s-small.is-left
+          %i.fas.fa-user
+        = render "devise/shared/error_messages", resource: resource, field: :email
+    
+    .field
+      %label.label= "Contraseña"
+      .control.has-icons-left.has-icons-right
+        %input.input{type: "password", name: "#{resource_name}[password]", placeholder: "Contraseña"}
+        %span.icon.s-small.is-left
+          %i.fas.fa-unlock-alt
+        = render "devise/shared/error_messages", resource: resource, field: :password
+
+
+    .field
+      %label.label= "Repetir Contraseña"
+      .control.has-icons-left.has-icons-right
+        %input.input{type: "password", name: "#{resource_name}[password_confirmation]", placeholder: "Repetir Contraseña"}
+        %span.icon.s-small.is-left
+          %i.fas.fa-unlock-alt
+        = render "devise/shared/error_messages", resource: resource, field: :password_confirmation
+
+    .field.is-grouped
+      .control
+        %button.button.is-link{ type: "submit" }= "Registrar"
+      .control
+        =render "devise/shared/links"
+
+    .field
+      
+
+
