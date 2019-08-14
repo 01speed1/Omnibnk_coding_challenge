@@ -8,8 +8,6 @@
 .container
   = form_for(@movie, url: user_movies_path, html: {method: "post"}) do |field|
 
-    =  @movie.errors.details
-
     /title
     .field
       %label.label= "Tiutulo de la pelicula"
@@ -35,18 +33,18 @@
           %span.icon.s-small.is-left
             %i.fas.fa-calendar-day
           = render "devise/shared/error_messages", resource: @movie, field: :release_year
-    .field
-      %label.label= "Poster"
-      .file.is-warning.is-boxed.is-centered.has-name
-        %label.file-label
-          %input.file-input{:name => "movies[poster]", :type => "file"}
-          %span.file-cta
-            %span.file-icon
-              %i.fas.fa-cloud-upload-alt
-            %span.file-label
-              Configurame
-          %span.file-name
-            Screen Shot 2017-07-29 at 15.54.25.png
+    /.field
+    /  %label.label= "Poster"
+    /  .file.is-warning.is-boxed.is-centered.has-name
+    /    %label.file-label
+    /      %input.file-input{:name => "movie[poster]", :type => "file"}
+    /      %span.file-cta
+    /        %span.file-icon
+    /          %i.fas.fa-cloud-upload-alt
+    /        %span.file-label
+    /          Configurame
+    /      %span.file-name
+    /        Screen Shot 2017-07-29 at 15.54.25.png
 
     /synopsis
     .field
@@ -61,8 +59,9 @@
       .control
         - (1..5).each do |value|
           %label.radio
-            %input{type: "radio", name: "movies[score]", value: value }
+            %input{type: "radio", name: "movie[score]", value: value }
             = value
+      = render "devise/shared/error_messages", resource: @movie, field: :synopsis
     .field.is-grouped
       .control
         %button.button.is-warning{ type: "submit" }= "Agregar mi pelicula"
@@ -70,4 +69,6 @@
         = link_to("Regresar", user_movies_path, class: "button is-light" )
     %br/
     %br/
+
+
 

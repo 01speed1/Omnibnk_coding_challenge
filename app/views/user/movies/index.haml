@@ -1,6 +1,12 @@
 = render "shared/navbar"
 
-= link_to("Agregar Pelicula", new_user_movie_path, class: "button is-warning" )
+.section
+  %h1.title Mis peliculas
+  %h2.subtitle lista de peliculas creadas
+  %br
+  = link_to("Agregar Pelicula", new_user_movie_path, class: "button is-warning" )
 
-= @movies.each do |m|
-  %p m
+
+.container{style: "display: flex; flex-wrap: wrap;"}
+  - @movies.each.with_index do |movie, index|
+    = render "shared/movie_card", movie: movie

@@ -6,7 +6,7 @@ class User::MoviesController < ApplicationController
   end
 
   def show
-
+    @movie = Movie.find_by(id: params[:id])
   end
 
   def new
@@ -14,8 +14,8 @@ class User::MoviesController < ApplicationController
   end
 
   def create
-    byebug
-    @movie = Movie.new(movie_params)
+    puts movie_params
+    @movie = Movie.new(movie_params.merge(user: current_user))
     if @movie.save
       redirect_to user_movies_path
     else
@@ -23,11 +23,17 @@ class User::MoviesController < ApplicationController
     end
   end
 
+  def destroy
+    Movie.find(params[:id]).destroy
+    redirect_to user_movies_path
+  end
 
   private
 
   def movie_params
-    params.require(:movie).permit(Movie::PERIMITED_PARAMS).fetch(:user, current_user)
+    params
+      .require(:movie)
+      .permit(Movie::PERIMITED_PARAMS)
   end
 
 end

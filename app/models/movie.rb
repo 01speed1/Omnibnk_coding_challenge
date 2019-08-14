@@ -7,6 +7,14 @@ class Movie < ApplicationRecord
     :release_year,
     :synopsis,
     :score,
-    :user
+    :user,
+    :poster
   ]
+
+  validates :title,
+  :genre,
+  :release_year,
+  :synopsis,
+  :score,
+  :user, presence: true
 end

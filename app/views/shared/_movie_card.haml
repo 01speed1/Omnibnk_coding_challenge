@@ -1,0 +1,42 @@
+-if movie.is_a? Movie
+  .column.is-one-third
+    .card
+      .card-image
+        %figure.image.is-4by3
+          %img{:alt => "Placeholder image", :src => "https://bulma.io/images/placeholders/1280x960.png"}/
+      .card-content
+        .media
+          .media-left
+            %figure.image.is-48x48
+              %img{:alt => "Placeholder image", :src => "https://bulma.io/images/placeholders/96x96.png"}/
+          .media-content
+            %p.title.is-4= movie.title
+            %p.subtitle.is-6= movie.genre
+        .content
+          = movie.synopsis
+          %br/
+          %time{:datetime => "#{movie.release_year}-1-1"}= movie.release_year
+      %footer.card-footer
+        = link_to("Ver", user_movie_path(movie), class: "card-footer-item" )
+        = link_to("Borrar", user_movie_path(movie), method: :delete, class: "card-footer-item" )
+-else
+  .column.is-one-fourth
+    .card
+      .card-image
+        %figure.image
+          %img{:alt => "Placeholder image", :src => "https://image.tmdb.org/t/p/w600_and_h900_bestv2/#{movie['poster_path']}"}/
+      .card-content
+        .media
+          .media-content
+            %p.title.is-4= movie["title"]
+            %p.subtitle.is-6= movie['original_title']
+        .content
+          - ["vote_count", "vote_average", "popularity",  "original_language", "original_title", "adult", "overview", "release_date"].each do |key|
+            %strong= key
+            %span= ": #{movie[key]}"
+            %br
+            
+          %br/
+
+      %footer.card-footer
+        = link_to("Ver detalles", "https://www.themoviedb.org/movie/#{movie['id']}", class: "card-footer-item" )

@@ -1,0 +1,28 @@
+= render "shared/navbar"
+
+.section
+  .columns
+    .column
+      .figure.image.is-1by2
+        %img{src: "https://vignette.wikia.nocookie.net/doblaje/images/1/1b/RF2CartelOriginal.jpg/revision/latest?cb=20150227170039&path-prefix=es"}
+    .column
+      %h1.title= @movie.title
+      %h2.subtitle
+        Genero:
+        = @movie.genre
+      %br
+      
+      .content.is-large
+        %p= @movie.synopsis
+        %br
+          Calificacion:
+          = "#{@movie.score} Estrella(s)"
+      %p.buttons
+        %a.button{href: "/user/movies"}
+          %span.icon
+            %i.fas.fa-chevron-left
+          %span Regresar a la Lista
+        = link_to(user_movie_path(@movie), method: :delete, class: " button is-danger is-outlined" ) do
+          %span Borrar
+          %span.icon.is-small
+            %i.fas.fa-times

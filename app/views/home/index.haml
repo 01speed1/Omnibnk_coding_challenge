@@ -1,1 +1,23 @@
 = render "shared/navbar"
+
+.container
+  %br
+  - if user_signed_in?
+    %h1.title Mis peliculas
+    - if  @my_movies.empty?
+      %h2.subtitle Aun no has agregado peliculas
+    .section
+      .container{style: "display: flex; flex-wrap: wrap;"}
+        - @my_movies.each.with_index do |movie, index|
+          = render "shared/movie_card", movie: movie
+  - else
+    %h1.subtitle  Inicia Sesion para agregar tus peliculas
+    %a.button.is-light{ href: "/users/sign_in" }
+      Iniciar Sesion
+
+
+.container
+  %h1.title Peliculas Recomendadas
+  .container{style: "display: flex; flex-wrap: wrap;"}
+    - @recomended.each do |movie|
+      =render "shared/movie_card", movie: movie
